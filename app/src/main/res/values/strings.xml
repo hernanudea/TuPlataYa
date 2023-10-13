@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">TuPlataYa</string>
+
+    <!-- Login View -->
+    <string name="login_who_are">Quién eres?</string>
+    <string name="login_email">Email</string>
+    <string name="login_password">Contraseña</string>
+    <string name="login_sesion">INICIAR SESIÓN</string>
+
+</resources>
