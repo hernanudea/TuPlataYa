@@ -1,20 +1,30 @@
 package co.edu.udea.compumovil.gr03.tuplataya.components
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -30,8 +40,26 @@ fun SpaceV(size: Dp = 5.dp) {
 }
 
 @Composable
+fun CustomImageVector(description: String, icon: ImageVector = Icons.Default.Person) {
+    Icon(imageVector = icon, contentDescription = description)
+}
+
+@Composable
+fun CustomPainter(description: String, icon: Painter) {
+    Icon(
+        painter = icon, contentDescription = description,
+        tint = MaterialTheme.colorScheme.primary
+    )
+}
+
+@Composable
 fun Title1(name: String) {
     Text(text = name, fontSize = 25.sp, color = MaterialTheme.colorScheme.primary)
+}
+
+@Composable
+fun Title4(name: String) {
+    Text(text = name, fontSize = 15.sp, color = MaterialTheme.colorScheme.primary)
 }
 
 @Composable
@@ -48,7 +76,9 @@ fun CustomButton(
             contentColor = color,
             containerColor = backColor
         ), enabled = isEnable,
-        modifier = modifier.fillMaxWidth().padding(10.dp)
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(50.dp)
     ) {
         Text(text = name)
     }
@@ -68,7 +98,23 @@ fun CustomOutlinedTextField(
         value = value,
         onValueChange = onValueChange,
         keyboardOptions = keyboardOptions,
-      //  leadingIcon = leadingIcon,
-        label = { Text(text = label) }
+        //  leadingIcon = leadingIcon,
+        label = { Text(text = label) },
+        modifier = Modifier.padding(5.dp)
     )
+}
+
+
+@Composable
+fun TextAndIcon(text: String, icon: Painter) {
+    Row(
+        modifier = Modifier
+//            .align(Alignment.BottomEnd)
+        .fillMaxWidth(),
+        horizontalArrangement = Arrangement.End,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Title4(name = text)
+        CustomPainter(description = "Icon", icon = icon)
+    }
 }

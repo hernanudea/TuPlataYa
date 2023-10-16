@@ -6,5 +6,21 @@
     <string name="login_email">Email</string>
     <string name="login_password">Contraseña</string>
     <string name="login_sesion">INICIAR SESIÓN</string>
+    <string name="login_new_account">Crear cuenta</string>
 
+    <!-- Add User View -->
+    <string name="add_user_new_user">Registrar usuario</string>
+    <string name="add_user_buton_save">GUARDAR</string>
+
+    <!-- Add Credit Simulator View -->
+    <string name="simulator_new_credit">Calcula tu Crédito</string>
+    <string name="simulator_buton_save">PIDE TU CRÉDITO</string>
+
+    <!-- Add Credit State View -->
+    <string name="credit_state_new_credit">Estado del Crédito</string>
+    <string name="credit_state_buton_save">REGRESAR</string>
+
+    <!-- Add Credit Response View -->
+    <string name="credit_response_new_credit">Respuesta a tu Crédito</string>
+    <string name="credit_response_buton_save">REGRESAR</string>
 </resources>

@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun TitleBar(name: String) {
-    Text(text = name, fontSize = 25.sp, color = MaterialTheme.colorScheme.onPrimary)
+    Text(text = name, fontSize = 35.sp, color = MaterialTheme.colorScheme.onPrimary)
 }
 
 // ToDo Validar uso
