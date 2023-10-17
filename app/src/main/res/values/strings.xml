@@ -15,6 +15,14 @@
     <!-- Add Credit Simulator View -->
     <string name="simulator_new_credit">Calcula tu Crédito</string>
     <string name="simulator_buton_save">PIDE TU CRÉDITO</string>
+    <string name="simulator_total_price">Total a pagar</string>
+    <string name="simulator_amount_request">Monto solicitado</string>
+    <string name="simulator_interest">Intereses</string>
+    <string name="simulator_interest_rate">Tasa de interes</string>
+    <string name="simulator_commission">Comisión</string>
+    <string name="simulator_discount">Descuento</string>
+    <string name="simulator_total_days">Total días</string>
+    <string name="simulator_advertence">Estos valores corresponden a una simulación de tu crédito según los valores seleccionados por ti.</string>
 
     <!-- Add Credit State View -->
     <string name="credit_state_new_credit">Estado del Crédito</string>
@@ -23,4 +31,6 @@
     <!-- Add Credit Response View -->
     <string name="credit_response_new_credit">Respuesta a tu Crédito</string>
     <string name="credit_response_buton_save">REGRESAR</string>
+
+
 </resources>

@@ -7,11 +7,6 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 
 class SimulatorStateModel : ViewModel() {
-
-    // Login View
-    var username by mutableStateOf("")
-    var password by mutableStateOf("")
-
-    // Register View
-
+    var indexValue by mutableStateOf(4f)
+    var indexDays by mutableStateOf(4f)
 }

@@ -80,7 +80,7 @@ fun ContentAddUserView(
                 color = MaterialTheme.colorScheme.onPrimary
             ) {
                 println("Add User Clicked")
-                navController.navigate("Login")
+                navController.navigate("creditResponse")
             }
         }
     }

@@ -120,7 +120,7 @@ fun ContentLoginView(
                 color = MaterialTheme.colorScheme.onPrimary
             ) {
                 println("Usuario: ${appStateViewModel.username} Contraseña: ${appStateViewModel.password}")
-                navController.navigate("creditResponse")
+                navController.navigate("AddUser")
             }
             SpaceV(30.dp)
             TextAndIcon(

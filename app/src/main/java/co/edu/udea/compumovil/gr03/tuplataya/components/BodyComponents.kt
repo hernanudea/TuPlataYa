@@ -7,24 +7,25 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -48,18 +49,66 @@ fun CustomImageVector(description: String, icon: ImageVector = Icons.Default.Per
 fun CustomPainter(description: String, icon: Painter) {
     Icon(
         painter = icon, contentDescription = description,
-        tint = MaterialTheme.colorScheme.primary
+        tint = colorScheme.primary
     )
 }
 
 @Composable
-fun Title1(name: String) {
-    Text(text = name, fontSize = 25.sp, color = MaterialTheme.colorScheme.primary)
+fun Title1(name: String, modifier: Modifier = Modifier) {
+    Text(
+        text = name,
+        fontSize = 25.sp,
+        color = colorScheme.primary,
+        modifier = modifier
+    )
 }
 
 @Composable
+fun Title2(name: String, modifier: Modifier = Modifier) {
+    Text(
+        text = name,
+        fontSize = 20.sp,
+        color = colorScheme.primary,
+        modifier = modifier
+    )
+}
+
+@Composable
+fun Title3(name: String, modifier: Modifier = Modifier) {
+    Text(
+        text = name,
+        fontSize = 16.sp,
+        color = colorScheme.primary,
+        modifier = modifier
+    )
+}
+
+@Composable
+fun Title4(name: String, modifier: Modifier = Modifier) {
+    Text(
+        text = name,
+        fontSize = 14.sp,
+        color = colorScheme.primary,
+        modifier = modifier
+    )
+}
+
+@Composable
+fun CustomDivider(color: Color){
+    Divider(modifier = Modifier.padding(10.dp),
+        color = color, thickness = 1.dp)
+}
+@Composable
 fun Title4(name: String) {
-    Text(text = name, fontSize = 15.sp, color = MaterialTheme.colorScheme.primary)
+    Text(text = name, fontSize = 15.sp, color = colorScheme.primary)
+}
+@Composable
+fun SmallText(text: String)  {
+    Text(text = text,
+        textAlign = TextAlign.Center,
+        fontSize = 12.sp,
+        color = colorScheme.primary,
+    )
 }
 
 @Composable
@@ -78,7 +127,7 @@ fun CustomButton(
         ), enabled = isEnable,
         modifier = modifier
             .fillMaxWidth()
-            .padding(50.dp)
+            .padding(start = 30.dp, end = 30.dp, top = 20.dp)
     ) {
         Text(text = name)
     }
@@ -92,7 +141,6 @@ fun CustomOutlinedTextField(
     onValueChange: (String) -> Unit,
     label: String,
     keyboardOptions: KeyboardOptions,
-    //leadingIcon: @Composable (() -> Unit)
 ) {
     OutlinedTextField(
         value = value,
@@ -109,8 +157,7 @@ fun CustomOutlinedTextField(
 fun TextAndIcon(text: String, icon: Painter) {
     Row(
         modifier = Modifier
-//            .align(Alignment.BottomEnd)
-        .fillMaxWidth(),
+            .fillMaxWidth(),
         horizontalArrangement = Arrangement.End,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -118,3 +165,17 @@ fun TextAndIcon(text: String, icon: Painter) {
         CustomPainter(description = "Icon", icon = icon)
     }
 }
+
+@Composable
+fun CustomSlider(
+    value: Float,
+    valueRange: () -> ClosedFloatingPointRange<Float>,
+    onValueChange: (Float) -> Unit
+) {
+    Slider(
+        value = value,
+        valueRange = valueRange(),
+        onValueChange = onValueChange,
+    )
+}
+
