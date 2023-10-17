@@ -11,6 +11,15 @@
     <!-- Add User View -->
     <string name="add_user_new_user">Registrar usuario</string>
     <string name="add_user_buton_save">GUARDAR</string>
+    <string name="add_user_name">Nombres</string>
+    <string name="add_user_last_name">Primer apellido</string>
+    <string name="add_user_middle_name">Segundo apellido</string>
+    <string name="add_user_id">Identificación</string>
+    <string name="add_user_phone">Celular</string>
+    <string name="add_user_address">Dirección</string>
+    <string name="add_user_email">Email</string>
+    <string name="add_user_password">Contraseña</string>
+    <string name="add_user_repet_password">Repetir contraseña</string>
 
     <!-- Add Credit Simulator View -->
     <string name="simulator_new_credit">Calcula tu Crédito</string>
@@ -31,6 +40,7 @@
     <!-- Add Credit Response View -->
     <string name="credit_response_new_credit">Respuesta a tu Crédito</string>
     <string name="credit_response_buton_save">REGRESAR</string>
+    <string name="add_user_passwords_dont_match">Las dos contraseñas deben ser iguales</string>
 
 
 </resources>

@@ -91,14 +91,14 @@ fun ContentLoginView(
                     appStateViewModel.username = it
                 },
                 keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Text,
+                    keyboardType = KeyboardType.Email,
                     imeAction = ImeAction.Next,
                     autoCorrect = false
                 ),
                 //  leadingIcon = { CustomPersonIcon() },
                 label = stringResource(R.string.login_email)
             )
-
+            SpaceV(10.dp)
             CustomOutlinedTextField(
                 value = appStateViewModel.password,
                 onValueChange = {
@@ -112,7 +112,7 @@ fun ContentLoginView(
                 //  leadingIcon = { CustomPersonIcon() },
                 label = stringResource(R.string.login_password)
             )
-
+            SpaceV(60.dp)
             CustomButton(
                 isEnable = true,
                 name = stringResource(id = R.string.login_sesion),

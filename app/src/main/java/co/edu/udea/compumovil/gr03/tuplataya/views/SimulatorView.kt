@@ -87,16 +87,14 @@ fun ContentSimulatorView(
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.primary),
         horizontalAlignment = Alignment.CenterHorizontally,
-//        verticalArrangement = Arrangement.SpaceAround
     ) {
-        SpaceV(60.dp)
+        SpaceV(90.dp)
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(MaterialTheme.colorScheme.onPrimary)
                 .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)),
             horizontalAlignment = Alignment.CenterHorizontally,
-//            verticalArrangement = Arrangement.SpaceBetween
         ) {
             SpaceV(20.dp)
             Title1(name = stringResource(id = R.string.simulator_new_credit))
@@ -133,7 +131,8 @@ fun ContentSimulatorView(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(MaterialTheme.colorScheme.onPrimary),
+                .background(MaterialTheme.colorScheme.onPrimary)
+                .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)),
             verticalArrangement = Arrangement.SpaceEvenly,
         ) {
             CustomButton(

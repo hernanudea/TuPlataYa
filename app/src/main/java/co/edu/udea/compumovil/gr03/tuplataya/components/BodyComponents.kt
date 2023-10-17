@@ -15,9 +15,11 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Slider
+import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -134,6 +136,20 @@ fun CustomButton(
 }
 
 
+@Composable
+fun TextAndIcon(text: String, icon: Painter) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth(),
+        horizontalArrangement = Arrangement.End,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Title4(name = text)
+        CustomPainter(description = "Icon", icon = icon)
+    }
+}
+
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CustomOutlinedTextField(
@@ -148,22 +164,8 @@ fun CustomOutlinedTextField(
         keyboardOptions = keyboardOptions,
         //  leadingIcon = leadingIcon,
         label = { Text(text = label) },
-        modifier = Modifier.padding(5.dp)
+        modifier = Modifier.padding(start = 5.dp, end = 5.dp),
     )
-}
-
-
-@Composable
-fun TextAndIcon(text: String, icon: Painter) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth(),
-        horizontalArrangement = Arrangement.End,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Title4(name = text)
-        CustomPainter(description = "Icon", icon = icon)
-    }
 }
 
 @Composable
@@ -176,6 +178,12 @@ fun CustomSlider(
         value = value,
         valueRange = valueRange(),
         onValueChange = onValueChange,
+        colors = SliderDefaults.colors(
+            thumbColor = colorScheme.secondary,
+            activeTrackColor = colorScheme.secondary,
+            inactiveTrackColor = colorScheme.secondaryContainer,
+        ),
+//        steps = 8,
     )
 }
 

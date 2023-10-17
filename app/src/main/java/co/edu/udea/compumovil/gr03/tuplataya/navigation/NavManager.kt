@@ -14,7 +14,7 @@ import co.edu.udea.compumovil.gr03.tuplataya.views.HomeSimulatorView
 @Composable
 fun NavManager() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "Simulator") {
+    NavHost(navController = navController, startDestination = "creditResponse") {
 
         composable("Login") {
             HomeLoginView(navController = navController)
