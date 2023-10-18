@@ -81,6 +81,7 @@ fun Title3(name: String, modifier: Modifier = Modifier) {
         text = name,
         fontSize = 16.sp,
         color = colorScheme.primary,
+        textAlign = TextAlign.Center,
         modifier = modifier
     )
 }
@@ -183,7 +184,7 @@ fun CustomSlider(
             activeTrackColor = colorScheme.secondary,
             inactiveTrackColor = colorScheme.secondaryContainer,
         ),
-//        steps = 8,
+        steps = 8,
     )
 }
 

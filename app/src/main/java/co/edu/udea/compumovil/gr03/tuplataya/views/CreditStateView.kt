@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import co.edu.udea.compumovil.gr03.tuplataya.R
 import co.edu.udea.compumovil.gr03.tuplataya.components.CustomButton
+import co.edu.udea.compumovil.gr03.tuplataya.components.CustomCardCreditState
 import co.edu.udea.compumovil.gr03.tuplataya.components.SpaceV
 import co.edu.udea.compumovil.gr03.tuplataya.components.Title1
 import co.edu.udea.compumovil.gr03.tuplataya.components.TitleBar
@@ -58,7 +59,7 @@ fun ContentCreditStateView(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceAround
     ) {
-        SpaceV(60.dp)
+        SpaceV(90.dp)
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -69,6 +70,9 @@ fun ContentCreditStateView(
             SpaceV(30.dp)
             Title1(name = stringResource(id = R.string.credit_state_new_credit))
             SpaceV()
+
+            CustomCardCreditState()
+
             CustomButton(
                 isEnable = true,
                 name = stringResource(id = R.string.credit_response_buton_save),

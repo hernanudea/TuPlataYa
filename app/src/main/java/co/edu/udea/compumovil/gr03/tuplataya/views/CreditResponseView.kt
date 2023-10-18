@@ -6,6 +6,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -22,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import co.edu.udea.compumovil.gr03.tuplataya.R
 import co.edu.udea.compumovil.gr03.tuplataya.components.CustomButton
+import co.edu.udea.compumovil.gr03.tuplataya.components.CustomCardCreditResponse
 import co.edu.udea.compumovil.gr03.tuplataya.components.SpaceV
 import co.edu.udea.compumovil.gr03.tuplataya.components.Title1
 import co.edu.udea.compumovil.gr03.tuplataya.components.TitleBar
@@ -58,7 +61,7 @@ fun ContentCreditResponseView(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceAround
     ) {
-        SpaceV(60.dp)
+        SpaceV(90.dp)
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -69,6 +72,14 @@ fun ContentCreditResponseView(
             SpaceV(30.dp)
             Title1(name = stringResource(id = R.string.credit_response_new_credit))
             SpaceV()
+
+       CustomCardCreditResponse(
+           Modifier
+               .padding(20.dp)
+               .fillMaxWidth()
+       )
+
+
             CustomButton(
                 isEnable = true,
                 name = stringResource(id = R.string.credit_response_buton_save),

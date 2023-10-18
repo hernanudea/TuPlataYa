@@ -49,6 +49,7 @@ var showCommission = 0f
 var showDiscount = 0f
 var showTotalPrice = 0f
 var showTotalDays = 0
+var showState = ""
 const val ratePercentage = 2.4f
 const val comisionPercentage = 5f
 const val discountInterestPercentage = 20f
@@ -79,9 +80,9 @@ fun HomeSimulatorView(navController: NavController) {
 fun ContentSimulatorView(
     navController: NavController,
     isPortrait: Boolean,
-    appStateViewModel: SimulatorStateModel
+    state: SimulatorStateModel
 ) {
-    calculateCreditValues(appStateViewModel.indexValue.toInt(), appStateViewModel.indexDays.toInt())
+    calculateCreditValues(state.indexValue.toInt(), state.indexDays.toInt())
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -100,30 +101,30 @@ fun ContentSimulatorView(
             Title1(name = stringResource(id = R.string.simulator_new_credit))
             SpaceV()
 
-            Text(text =  stringResource(id = R.string.simulator_amount_request) +" ${valuesList[appStateViewModel.indexValue.toInt()]}")
+            Text(text = stringResource(id = R.string.simulator_amount_request) + " ${valuesList[state.indexValue.toInt()]}")
             CustomSlider(
-                value = appStateViewModel.indexValue,
+                value = state.indexValue,
                 valueRange = { 0f..9f },
                 onValueChange = {
-                    appStateViewModel.indexValue = it
+                    state.indexValue = it
                     calculateCreditValues(
-                        appStateViewModel.indexValue.toInt(),
-                        appStateViewModel.indexDays.toInt()
+                        state.indexValue.toInt(),
+                        state.indexDays.toInt()
                     )
                 }
             )
 
             SpaceV(10.dp)
 
-            Text(text = stringResource(id = R.string.simulator_total_days) +  " ${daysList[appStateViewModel.indexDays.toInt()]}")
+            Text(text = stringResource(id = R.string.simulator_total_days) + " ${daysList[state.indexDays.toInt()]}")
             CustomSlider(
-                value = appStateViewModel.indexDays,
+                value = state.indexDays,
                 valueRange = { 0f..9f },
                 onValueChange = {
-                    appStateViewModel.indexDays = it
+                    state.indexDays = it
                     calculateCreditValues(
-                        appStateViewModel.indexValue.toInt(),
-                        appStateViewModel.indexDays.toInt()
+                        state.indexValue.toInt(),
+                        state.indexDays.toInt()
                     )
                 }
             )
@@ -142,6 +143,7 @@ fun ContentSimulatorView(
                 color = MaterialTheme.colorScheme.onPrimary
             ) {
                 println("Simulator Clicked")
+                showState = "APROBADO"
                 navController.navigate("Login")
             }
             SmallText(text = stringResource(id = R.string.simulator_advertence))
@@ -156,11 +158,11 @@ fun ContentSimulatorView(
                     modifier = Modifier.align(Alignment.CenterStart)
                 )
                 Title1(
-                    name = "$ $showTotalPrice",
+                    name = "$ ${showTotalPrice}",
                     modifier = Modifier.align(Alignment.CenterEnd)
                 )
             }
-
+            CustomDivider(color = MaterialTheme.colorScheme.primary)
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -269,6 +271,11 @@ fun ContentSimulatorView(
     }
 }
 
+@Composable
+fun ShowSumary() {
+
+}
+
 
 fun calculateCreditValues(valueIndex: Int, daysIndex: Int) {
     showAmountRequested = formatToTwoDecimals(valuesList[valueIndex])
@@ -283,7 +290,14 @@ fun calculateCreditValues(valueIndex: Int, daysIndex: Int) {
     }
     showTotalPrice =
         formatToTwoDecimals(showAmountRequested + showInterest + showCommission + showDiscount)
-}
+
+    println("showAmountRequested: $showAmountRequested")
+    println("showTotalDays: $showTotalDays")
+    println("showRate: $showRate")
+    println("showInterest: $showInterest")
+    println("showCommission: $showCommission")
+    println("showDiscount: $showDiscount")
+    println("showTotalPrice: $showTotalPrice")}
 
 fun formatToTwoDecimals(value: Int): Float {
     val formattedValue = String.format("%.2f", value.toFloat())
@@ -294,3 +308,4 @@ fun formatToTwoDecimals(value: Float): Float {
     val formattedValue = String.format("%.2f", value)
     return formattedValue.toFloat()
 }
+
