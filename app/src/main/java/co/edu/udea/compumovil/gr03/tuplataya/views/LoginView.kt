@@ -111,6 +111,7 @@ fun ContentLoginView(
                 backColor = MaterialTheme.colorScheme.primary,
                 color = MaterialTheme.colorScheme.onPrimary
             ) {
+                appStateViewModel.isLogined = true
                 println("Usuario: ${appStateViewModel.username} Contraseña: ${appStateViewModel.password}")
                 navController.navigate("addUser")
             }

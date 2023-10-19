@@ -26,7 +26,11 @@ import co.edu.udea.compumovil.gr03.tuplataya.views.showTotalPrice
 
 
 var currentCapital = 2000000f
-var nextPaymentDate = "17/11/2023"
+var paymenValue = 54000f
+var currentInterest = 32000f
+var interestArrears = 0f
+var nextPaymentDate = "19/11/2023"
+var disbursementDate = "19/10/2023"
 @Composable
 fun CustomCardCreditResponse(modifier: Modifier = Modifier) {
     Card(
@@ -192,6 +196,21 @@ fun CustomCardCreditState(modifier: Modifier = Modifier) {
                     .padding(start = 5.dp, end = 5.dp),
             ) {
                 Title4(
+                    name = stringResource(id = R.string.credit_state_disbursement_date),
+                    modifier = Modifier.align(Alignment.CenterStart)
+                )
+                Title3(
+                    name = "$ $disbursementDate",
+                    modifier = Modifier.align(Alignment.CenterEnd)
+                )
+            }
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 5.dp, end = 5.dp),
+            ) {
+                Title4(
                     name = stringResource(id = R.string.credit_state_current_capital),
                     modifier = Modifier.align(Alignment.CenterStart)
                 )
@@ -200,6 +219,7 @@ fun CustomCardCreditState(modifier: Modifier = Modifier) {
                     modifier = Modifier.align(Alignment.CenterEnd)
                 )
             }
+            CustomDivider(color = MaterialTheme.colorScheme.onPrimary)
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -214,6 +234,106 @@ fun CustomCardCreditState(modifier: Modifier = Modifier) {
                     modifier = Modifier.align(Alignment.CenterEnd)
                 )
             }
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 5.dp, end = 5.dp),
+            ) {
+                Title4(
+                    name = stringResource(id = R.string.credit_state_current_capital),
+                    modifier = Modifier.align(Alignment.CenterStart)
+                )
+                Title3(
+                    name = currentCapital.toString(),
+                    modifier = Modifier.align(Alignment.CenterEnd)
+                )
+            }
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 5.dp, end = 5.dp),
+            ) {
+                Title4(
+                    name = stringResource(id = R.string.credit_state_next_payment_value),
+                    modifier = Modifier.align(Alignment.CenterStart)
+                )
+                Title3(
+                    name = paymenValue.toString(),
+                    modifier = Modifier.align(Alignment.CenterEnd)
+                )
+            }
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 5.dp, end = 5.dp),
+            ) {
+                Title4(
+                    name = stringResource(id = R.string.credit_state_current_interest),
+                    modifier = Modifier.align(Alignment.CenterStart)
+                )
+                Title3(
+                    name = currentInterest.toString(),
+                    modifier = Modifier.align(Alignment.CenterEnd)
+                )
+            }
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 5.dp, end = 5.dp),
+            ) {
+                Title4(
+                    name = stringResource(id = R.string.credit_state_interest_arrears),
+                    modifier = Modifier.align(Alignment.CenterStart)
+                )
+                Title3(
+                    name = interestArrears.toString(),
+                    modifier = Modifier.align(Alignment.CenterEnd)
+                )
+            }
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 5.dp, end = 5.dp),
+            ) {
+                Title4(
+                    name = stringResource(id = R.string.credit_state_balance_in_arrears),
+                    modifier = Modifier.align(Alignment.CenterStart)
+                )
+                Title3(
+                    name = interestArrears.toString(),
+                    modifier = Modifier.align(Alignment.CenterEnd)
+                )
+            }
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 5.dp, end = 5.dp),
+            ) {
+                Title4(
+                    name = stringResource(id = R.string.credit_state_other_charges),
+                    modifier = Modifier.align(Alignment.CenterStart)
+                )
+                Title3(
+                    name = interestArrears.toString(),
+                    modifier = Modifier.align(Alignment.CenterEnd)
+                )
+            }
+            CustomDivider(color = MaterialTheme.colorScheme.onPrimary)
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 5.dp, end = 5.dp),
+            ) {
+                Title1(
+                    name = stringResource(id = R.string.credit_state_make_payment),
+                    modifier = Modifier.align(Alignment.Center)
+                )
+            }
+
+
+
+
+
         }
 
     }

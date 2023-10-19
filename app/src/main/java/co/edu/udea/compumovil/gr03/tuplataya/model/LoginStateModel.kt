@@ -8,10 +8,7 @@ import androidx.lifecycle.ViewModel
 
 class LoginStateModel : ViewModel() {
 
-    // Login View
     var username by mutableStateOf("")
     var password by mutableStateOf("")
-
-    // Register View
-
+    var isLogined by mutableStateOf(false)
 }

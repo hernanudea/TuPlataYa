@@ -203,7 +203,6 @@ fun ContentAddUserView(
                 backColor = MaterialTheme.colorScheme.primary,
                 color = MaterialTheme.colorScheme.onPrimary
             ) {
-                println("Add User Clicked")
                 println("""
                     Nombres: ${appStateViewModel.name}
                     Apellidos: ${appStateViewModel.lastName} ${appStateViewModel.middleName} 
@@ -215,7 +214,7 @@ fun ContentAddUserView(
                     Repetir Contraseña: ${appStateViewModel.repetPassword}
                     
                 """.trimIndent())
-                navController.navigate("responseState")
+                navController.navigate("simulator")
             }
         }
     }

@@ -70,8 +70,7 @@ fun ContentCreditStateView(
                 backColor = MaterialTheme.colorScheme.primary,
                 color = MaterialTheme.colorScheme.onPrimary
             ) {
-                navController.navigate("Simulator")
-                println("Credit State Clicked")
+                navController.navigate("simulator")
             }
         }
     }

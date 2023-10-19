@@ -42,7 +42,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -59,6 +58,7 @@ import co.edu.udea.compumovil.gr03.tuplataya.components.Title1
 import co.edu.udea.compumovil.gr03.tuplataya.components.Title2
 import co.edu.udea.compumovil.gr03.tuplataya.components.Title3
 import co.edu.udea.compumovil.gr03.tuplataya.components.Title4
+import co.edu.udea.compumovil.gr03.tuplataya.data.NavigationItem
 import co.edu.udea.compumovil.gr03.tuplataya.model.SimulatorStateModel
 import kotlinx.coroutines.launch
 
@@ -77,16 +77,6 @@ var showState = ""
 const val ratePercentage = 2.4f
 const val comisionPercentage = 5f
 const val discountInterestPercentage = 20f
-
-
-data class NavigationItem(
-    val title: String,
-    val selectedIcon: ImageVector,
-    val unselectedIcon: ImageVector,
-    val badgeCount: Int? = null,
-    val path: String
-)
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -252,7 +242,6 @@ fun ContentSimulatorView(
                 backColor = MaterialTheme.colorScheme.primary,
                 color = MaterialTheme.colorScheme.onPrimary
             ) {
-                println("Simulator Clicked")
                 showState = "APROBADO"
                 navController.navigate("login")
             }

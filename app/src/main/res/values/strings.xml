@@ -37,14 +37,23 @@
     <!-- Add Credit State View -->
     <string name="credit_state_new_credit">Estado del Crédito</string>
     <string name="credit_state_buton_save">REGRESAR</string>
+    <string name="credit_state_disbursement_date">Fecha desembolso</string>
+    <string name="credit_state_disbursement_value">Valor desembolso</string>
+    <string name="credit_state_current_capital">Capital vigente</string>
+    <string name="credit_state_next_payment_date">Fecha próximo pago</string>
+    <string name="credit_state_next_payment_value">Valor próximo pago</string>
+    <string name="credit_state_current_interest">Intereses corrientes</string>
+    <string name="credit_state_interest_arrears">Intereses mora</string>
+    <string name="credit_state_balance_in_arrears">Saldo mora</string>
+    <string name="credit_state_other_charges">Otros cargos</string>
+    <string name="credit_state_make_payment">Realizar pago</string>
 
     <!-- Add Credit Response View -->
     <string name="credit_response_new_credit">Respuesta a tu Crédito</string>
     <string name="credit_response_buton_save">REGRESAR</string>
     <string name="credit_response_message">"Es estado de su credito es: "</string>
     <string name="credit_response_indicator">Despues de que su crédito pasa a estado APROBADO, el dinero pasa a ser consignado en su cuenta bancaria</string>
-    <string name="credit_state_current_capital">Capital vigente</string>
-    <string name="credit_state_next_payment_date">Fecha próximo pago</string>
+
 
     <!-- Menu -->
     <string name="menu_simulator">Simulador</string>
