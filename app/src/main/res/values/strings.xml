@@ -20,6 +20,7 @@
     <string name="add_user_email">Email</string>
     <string name="add_user_password">Contraseña</string>
     <string name="add_user_repet_password">Repetir contraseña</string>
+    <string name="add_user_passwords_dont_match">Las dos contraseñas deben ser iguales</string>
 
     <!-- Add Credit Simulator View -->
     <string name="simulator_new_credit">Calcula tu Crédito</string>
@@ -40,11 +41,16 @@
     <!-- Add Credit Response View -->
     <string name="credit_response_new_credit">Respuesta a tu Crédito</string>
     <string name="credit_response_buton_save">REGRESAR</string>
-    <string name="add_user_passwords_dont_match">Las dos contraseñas deben ser iguales</string>
     <string name="credit_response_message">"Es estado de su credito es: "</string>
     <string name="credit_response_indicator">Despues de que su crédito pasa a estado APROBADO, el dinero pasa a ser consignado en su cuenta bancaria</string>
     <string name="credit_state_current_capital">Capital vigente</string>
     <string name="credit_state_next_payment_date">Fecha próximo pago</string>
 
+    <!-- Menu -->
+    <string name="menu_simulator">Simulador</string>
+    <string name="menu_request_state">Solicitud</string>
+    <string name="menu_credit_state">Créditos</string>
+    <string name="menu_register">Registro</string>
+    <string name="menu_exit">Cerrar sesión</string>
 
 </resources>

@@ -8,11 +8,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,10 +26,10 @@ import androidx.navigation.NavController
 import co.edu.udea.compumovil.gr03.tuplataya.R
 import co.edu.udea.compumovil.gr03.tuplataya.components.CustomButton
 import co.edu.udea.compumovil.gr03.tuplataya.components.CustomOutlinedTextField
+import co.edu.udea.compumovil.gr03.tuplataya.components.ScaffoldTopBarWithTitle
 import co.edu.udea.compumovil.gr03.tuplataya.components.SmallText
 import co.edu.udea.compumovil.gr03.tuplataya.components.SpaceV
 import co.edu.udea.compumovil.gr03.tuplataya.components.Title1
-import co.edu.udea.compumovil.gr03.tuplataya.components.TitleBar
 import co.edu.udea.compumovil.gr03.tuplataya.model.AddUserStateModel
 
 
@@ -40,14 +38,7 @@ import co.edu.udea.compumovil.gr03.tuplataya.model.AddUserStateModel
 @Composable
 fun HomeAddUserView(navController: NavController) {
     val stateViewModel: AddUserStateModel = viewModel()
-    Scaffold(topBar = {
-        CenterAlignedTopAppBar(
-            title = { TitleBar(name = stringResource(R.string.app_name)) },
-            colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                containerColor = MaterialTheme.colorScheme.primary
-            )
-        )
-    }
+    Scaffold(topBar = { ScaffoldTopBarWithTitle(navController) }
     ) {
         val isPortrait =
             LocalConfiguration.current.orientation == Configuration.ORIENTATION_PORTRAIT
@@ -224,7 +215,7 @@ fun ContentAddUserView(
                     Repetir Contraseña: ${appStateViewModel.repetPassword}
                     
                 """.trimIndent())
-                navController.navigate("creditResponse")
+                navController.navigate("responseState")
             }
         }
     }

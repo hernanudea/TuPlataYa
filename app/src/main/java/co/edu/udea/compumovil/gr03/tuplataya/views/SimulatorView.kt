@@ -10,16 +10,39 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.ExitToApp
+import androidx.compose.material.icons.filled.Face
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.outlined.CheckCircle
+import androidx.compose.material.icons.outlined.ExitToApp
+import androidx.compose.material.icons.outlined.Face
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.List
+import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalDrawerSheet
+import androidx.compose.material3.ModalNavigationDrawer
+import androidx.compose.material3.NavigationDrawerItem
+import androidx.compose.material3.NavigationDrawerItemDefaults
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -29,14 +52,15 @@ import co.edu.udea.compumovil.gr03.tuplataya.R
 import co.edu.udea.compumovil.gr03.tuplataya.components.CustomButton
 import co.edu.udea.compumovil.gr03.tuplataya.components.CustomDivider
 import co.edu.udea.compumovil.gr03.tuplataya.components.CustomSlider
+import co.edu.udea.compumovil.gr03.tuplataya.components.ScaffoldTopBarHome
 import co.edu.udea.compumovil.gr03.tuplataya.components.SmallText
 import co.edu.udea.compumovil.gr03.tuplataya.components.SpaceV
 import co.edu.udea.compumovil.gr03.tuplataya.components.Title1
 import co.edu.udea.compumovil.gr03.tuplataya.components.Title2
 import co.edu.udea.compumovil.gr03.tuplataya.components.Title3
 import co.edu.udea.compumovil.gr03.tuplataya.components.Title4
-import co.edu.udea.compumovil.gr03.tuplataya.components.TitleBar
 import co.edu.udea.compumovil.gr03.tuplataya.model.SimulatorStateModel
+import kotlinx.coroutines.launch
 
 
 val valuesList: List<Int> =
@@ -55,23 +79,109 @@ const val comisionPercentage = 5f
 const val discountInterestPercentage = 20f
 
 
+data class NavigationItem(
+    val title: String,
+    val selectedIcon: ImageVector,
+    val unselectedIcon: ImageVector,
+    val badgeCount: Int? = null,
+    val path: String
+)
+
+
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun HomeSimulatorView(navController: NavController) {
+    val items = listOf(
+        NavigationItem(
+            title = stringResource(id = R.string.menu_simulator),
+            selectedIcon = Icons.Filled.Home,
+            unselectedIcon = Icons.Outlined.Home,
+            path = "simulator",
+        ),
+        NavigationItem(
+            title = stringResource(id = R.string.menu_register),
+            selectedIcon = Icons.Filled.Face,
+            unselectedIcon = Icons.Outlined.Face,
+            path = "addUser",
+        ),
+        NavigationItem(
+            title = stringResource(id = R.string.menu_request_state),
+            selectedIcon = Icons.Filled.CheckCircle,
+            unselectedIcon = Icons.Outlined.CheckCircle,
+            path = "responseState",
+        ),
+        NavigationItem(
+            title = stringResource(id = R.string.menu_credit_state),
+            selectedIcon = Icons.Filled.List,
+            unselectedIcon = Icons.Outlined.List,
+            path = "creditState",
+        ),
+        NavigationItem(
+            title = stringResource(id = R.string.menu_exit),
+            selectedIcon = Icons.Filled.ExitToApp,
+            unselectedIcon = Icons.Outlined.ExitToApp,
+            path = "simulator",
+        ),
+    )
+
     val stateViewModel: SimulatorStateModel = viewModel()
-    Scaffold(topBar = {
-        CenterAlignedTopAppBar(
-            title = { TitleBar(name = stringResource(R.string.app_name)) },
-            colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                containerColor = MaterialTheme.colorScheme.primary
-            )
-        )
-    }
+
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background
     ) {
-        val isPortrait =
-            LocalConfiguration.current.orientation == Configuration.ORIENTATION_PORTRAIT
-        ContentSimulatorView(navController, isPortrait, stateViewModel)
+        val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+        val scope = rememberCoroutineScope()
+        var selectedItemIndex by rememberSaveable { mutableStateOf(0) }
+
+        ModalNavigationDrawer(
+            drawerContent = {
+                ModalDrawerSheet {
+                    SpaceV(16.dp)
+                    items.forEachIndexed { index, item ->
+                        NavigationDrawerItem(
+                            label = {
+                                Text(text = item.title)
+                            },
+                            selected = index == selectedItemIndex,
+                            onClick = {
+                                selectedItemIndex = index
+                                scope.launch {
+                                    drawerState.close()
+                                }
+                                navController.navigate(item.path)
+                            },
+                            icon = {
+                                Icon(
+                                    imageVector = if (index == selectedItemIndex) {
+                                        item.selectedIcon
+                                    } else item.unselectedIcon,
+                                    contentDescription = item.title
+                                )
+                            },
+                            badge = {
+                                item.badgeCount?.let {
+                                    Text(text = item.badgeCount.toString())
+                                }
+                            },
+                            modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
+                        )
+                    }
+                }
+            },
+            drawerState = drawerState
+        ) {
+            Scaffold(
+                topBar = { ScaffoldTopBarHome(scope, drawerState) }
+            ) {
+                ContentSimulatorView(
+                    navController = navController,
+                    isPortrait = LocalConfiguration.current.orientation == Configuration.ORIENTATION_PORTRAIT,
+                    state = stateViewModel
+                )
+            }
+        }
     }
 }
 
@@ -104,7 +214,7 @@ fun ContentSimulatorView(
             Text(text = stringResource(id = R.string.simulator_amount_request) + " ${valuesList[state.indexValue.toInt()]}")
             CustomSlider(
                 value = state.indexValue,
-                valueRange = { 0f..9f },
+                valueRange = { 0f..(valuesList.size - 1).toFloat() },
                 onValueChange = {
                     state.indexValue = it
                     calculateCreditValues(
@@ -119,14 +229,14 @@ fun ContentSimulatorView(
             Text(text = stringResource(id = R.string.simulator_total_days) + " ${daysList[state.indexDays.toInt()]}")
             CustomSlider(
                 value = state.indexDays,
-                valueRange = { 0f..9f },
+                valueRange = { 0f..(daysList.size - 1).toFloat() },
                 onValueChange = {
                     state.indexDays = it
                     calculateCreditValues(
                         state.indexValue.toInt(),
                         state.indexDays.toInt()
                     )
-                }
+                },
             )
         }
         Column(
@@ -144,7 +254,7 @@ fun ContentSimulatorView(
             ) {
                 println("Simulator Clicked")
                 showState = "APROBADO"
-                navController.navigate("Login")
+                navController.navigate("login")
             }
             SmallText(text = stringResource(id = R.string.simulator_advertence))
             CustomDivider(color = MaterialTheme.colorScheme.primary)
@@ -158,7 +268,7 @@ fun ContentSimulatorView(
                     modifier = Modifier.align(Alignment.CenterStart)
                 )
                 Title1(
-                    name = "$ ${showTotalPrice}",
+                    name = "$ $showTotalPrice",
                     modifier = Modifier.align(Alignment.CenterEnd)
                 )
             }
@@ -271,19 +381,13 @@ fun ContentSimulatorView(
     }
 }
 
-@Composable
-fun ShowSumary() {
-
-}
-
-
 fun calculateCreditValues(valueIndex: Int, daysIndex: Int) {
     showAmountRequested = formatToTwoDecimals(valuesList[valueIndex])
     showTotalDays = daysList[daysIndex]
     showRate = formatToTwoDecimals(ratePercentage)
     showInterest = formatToTwoDecimals(showAmountRequested * showRate / 100 / 30 * showTotalDays)
     showCommission = formatToTwoDecimals(showAmountRequested * comisionPercentage / 100)
-    showDiscount = if (showAmountRequested > 1000000) {
+    showDiscount = if (showAmountRequested >= 1000000) {
         formatToTwoDecimals(showInterest * -discountInterestPercentage / 100)
     } else {
         0f
@@ -291,13 +395,14 @@ fun calculateCreditValues(valueIndex: Int, daysIndex: Int) {
     showTotalPrice =
         formatToTwoDecimals(showAmountRequested + showInterest + showCommission + showDiscount)
 
-    println("showAmountRequested: $showAmountRequested")
-    println("showTotalDays: $showTotalDays")
-    println("showRate: $showRate")
-    println("showInterest: $showInterest")
-    println("showCommission: $showCommission")
-    println("showDiscount: $showDiscount")
-    println("showTotalPrice: $showTotalPrice")}
+//    println("showAmountRequested: $showAmountRequested")
+//    println("showTotalDays: $showTotalDays")
+//    println("showRate: $showRate")
+//    println("showInterest: $showInterest")
+//    println("showCommission: $showCommission")
+//    println("showDiscount: $showDiscount")
+//    println("showTotalPrice: $showTotalPrice")
+}
 
 fun formatToTwoDecimals(value: Int): Float {
     val formattedValue = String.format("%.2f", value.toFloat())

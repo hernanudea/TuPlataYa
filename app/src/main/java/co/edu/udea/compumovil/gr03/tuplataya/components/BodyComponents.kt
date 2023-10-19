@@ -15,7 +15,6 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Slider
@@ -173,7 +172,7 @@ fun CustomOutlinedTextField(
 fun CustomSlider(
     value: Float,
     valueRange: () -> ClosedFloatingPointRange<Float>,
-    onValueChange: (Float) -> Unit
+    onValueChange: (Float) -> Unit,
 ) {
     Slider(
         value = value,
@@ -184,7 +183,6 @@ fun CustomSlider(
             activeTrackColor = colorScheme.secondary,
             inactiveTrackColor = colorScheme.secondaryContainer,
         ),
-        steps = 8,
     )
 }
 

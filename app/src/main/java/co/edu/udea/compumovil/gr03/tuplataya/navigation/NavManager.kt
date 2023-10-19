@@ -39,7 +39,7 @@ fun NavManager() {
         }
 
         composable(
-            "creditResponse", arguments = listOf()
+            "responseState", arguments = listOf()
         ) {
             HomeCreditResponseView(navController = navController)
         }

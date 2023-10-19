@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -16,7 +15,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import co.edu.udea.compumovil.gr03.tuplataya.R
-import co.edu.udea.compumovil.gr03.tuplataya.views.ShowSumary
 import co.edu.udea.compumovil.gr03.tuplataya.views.showAmountRequested
 import co.edu.udea.compumovil.gr03.tuplataya.views.showCommission
 import co.edu.udea.compumovil.gr03.tuplataya.views.showDiscount
@@ -47,7 +45,7 @@ fun CustomCardCreditResponse(modifier: Modifier = Modifier) {
             if (showState.equals("APROBADO")) {
                 Title3(name = showState)
             }
-//            ShowSumary()
+//            ShowSummary()
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -167,7 +165,7 @@ fun CustomCardCreditResponse(modifier: Modifier = Modifier) {
                     modifier = Modifier.align(Alignment.CenterEnd)
                 )
             }
-//            ShowSumary()
+//            ShowSummary()
         }
         Title3(name = stringResource(id = R.string.credit_response_indicator))
 
@@ -212,7 +210,7 @@ fun CustomCardCreditState(modifier: Modifier = Modifier) {
                     modifier = Modifier.align(Alignment.CenterStart)
                 )
                 Title3(
-                    name = "$ $nextPaymentDate",
+                    name = nextPaymentDate,
                     modifier = Modifier.align(Alignment.CenterEnd)
                 )
             }
